@@ -12,7 +12,7 @@ This projects shows how to enable Websocket support on Karaf 3.0.0. It depends o
 
 1. Users should first pull the [Pax Web version 4.x SNAPSHOT](https://github.com/ops4j/org.ops4j.pax.web) from GitHub and install it into their local Maven repository. 
 
-2. Than pull this project and build it again using Maven. The project installs a Karaf features descriptor, **net.vitic.karaf.websocket/karaf-websocket/1.0.0/xml/features**.
+2. Than pull this project and build it again using Maven. The project installs a Karaf features descriptor, **net.vitic/karaf-websocket/1.0.0/xml/features**.
 
 3. In your Apacahe Karaf installation disable default features **mvn:org.ops4j.pax.web/pax-web-features/3.0.5/xml/features** and **mvn:org.apache.karaf.features/spring/3.0.0/xml/features** by removing them from the **org.apache.karaf.features.cfg** configuration file under the etc folder. It should now read
 
@@ -28,7 +28,7 @@ featuresRepositories=\
 4. Start Karaf and install the feature descriptor provided by thsi project and than install the project feature as follows
 
 ````
-karaf@karaf-3.0.0()> feature:repo-add net.vitic.karaf.websocket/karaf-websocket/1.0.0/xml/features
+karaf@karaf-3.0.0()> feature:repo-add net.vitic/karaf-websocket/1.0.0/xml/features
 karaf@karaf-3.0.0()> feature:install karaf-websocket
 ````
 
