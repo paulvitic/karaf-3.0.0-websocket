@@ -1,5 +1,5 @@
-karaf-3.0.0-websocket
-=====================
+Websockets with Karaf 3.0.0
+===========================
 
 [Apache Karaf](http://karaf.apache.org) is a great OSGi deployment framework. It provides many features out of the box. 
 
@@ -7,10 +7,10 @@ Karaf supports the deployment of Web applications as war packages, but it is als
 
 This projects shows how to enable Websocket support on Karaf 3.0.0. It depends on the [GitHub project](https://github.com/ops4j/org.ops4j.pax.web) that demonstrates OSGi R4 Http Service and Web Applications (OSGi Enterprise Release chapter 128) implementation using Jetty 9 or Tomcat 7. 
 
-## Usage
---------
+Usage
+-----
 
-1. Users should first pull the [Pax Web version 4.x SNAPSHOT](https://github.com/ops4j/org.ops4j.pax.web) from GitHub and install it into their local Maven repository. 
+1. Users should first pull [Pax Web version 4.x SNAPSHOT](https://github.com/ops4j/org.ops4j.pax.web) from GitHub and install it into their local Maven repository. 
 
 2. Than pull this project and build it again using Maven. The project installs a Karaf features descriptor, **net.vitic/karaf-websocket/1.0.0/xml/features**.
 
@@ -25,11 +25,22 @@ featuresRepositories=\
  mvn:org.apache.karaf.features/enterprise/3.0.0/xml/features
 ````
 
-4. Start Karaf and install the feature descriptor provided by thsi project and than install the project feature as follows
+4. Start Karaf and install the feature descriptor provided by this project and than install the project feature as follows
 
 ````
-karaf@karaf-3.0.0()> feature:repo-add net.vitic/karaf-websocket/1.0.0/xml/features
+karaf@karaf-3.0.0()> feature:repo-add mvn:net.vitic/karaf-websocket/1.0.0/xml/features
+Adding feature url mvn:net.vitic/karaf-websocket/1.0.0/xml/features
 karaf@karaf-3.0.0()> feature:install karaf-websocket
 ````
 
 At http://localhost:8181 you should be able to see the samples provided by the [Pax Web version 4.x SNAPSHOT](https://github.com/ops4j/org.ops4j.pax.web) project plus the websocket example at the bottom of the samples link list. 
+
+Note
+----
+
+The project demontrates other useful features such as
+
+* the configuration of [Pax Web whiteboard pattern](https://ops4j1.jira.com/wiki/display/ops4j/Pax+Web+Extender+-+Whiteboard) via [blueprint](http://aries.apache.org/modules/blueprint.html) for deploying Web resources and servlets
+* the use of [Hazelcast](http://hazelcast.com) for maintaining Websockets sessions as a distributed in-memory map. This may be particularly useful if you serve your Web resources behind an HTTP load balancer. 
+
+I will not go into detailed explanation for these features as they come directly from the examples in the [Pax Web version 4.x SNAPSHOT](https://github.com/ops4j/org.ops4j.pax.web) GitHub project.
