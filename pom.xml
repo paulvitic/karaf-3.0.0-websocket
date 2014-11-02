@@ -20,6 +20,67 @@
         <hazelcastVersion>3.2.3</hazelcastVersion>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>${osgiVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+            <version>${osgiVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servletSpecVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.web</groupId>
+            <artifactId>pax-web-runtime</artifactId>
+            <version>${paxWebVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.web</groupId>
+            <artifactId>pax-web-extender-whiteboard</artifactId>
+            <version>${paxWebVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Websocket dependencies -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-servlet</artifactId>
+            <version>${jettyVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-api</artifactId>
+            <version>${jettyVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-client</artifactId>
+            <version>${hazelcastVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <resources>
             <resource>
@@ -81,25 +142,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-war-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <manifestFile>
-                            ${project.build.outputDirectory}/META-INF/MANIFEST.MF
-                        </manifestFile>
-                        <manifestEntries>
-                            <Bundle-ClassPath>WEB-INF/classes/
-                            </Bundle-ClassPath>
-                        </manifestEntries>
-                    </archive>
-                    <!-- We don't always have a web.xml -->
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
                 <configuration>
                     <archive>
                         <!-- add bundle plugin generated manifest to the jar -->
@@ -156,64 +201,4 @@
         </plugins>
     </build>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-            <version>${osgiVersion}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.compendium</artifactId>
-            <version>${osgiVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${servletSpecVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ops4j.pax.web</groupId>
-            <artifactId>pax-web-runtime</artifactId>
-            <version>${paxWebVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ops4j.pax.web</groupId>
-            <artifactId>pax-web-extender-whiteboard</artifactId>
-            <version>${paxWebVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Websocket dependencies -->
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>websocket-servlet</artifactId>
-            <version>${jettyVersion}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>websocket-api</artifactId>
-            <version>${jettyVersion}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast-client</artifactId>
-            <version>${hazelcastVersion}</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 </project>
