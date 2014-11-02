@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0"
+          name="vmp-test">
+
+    <!-- mvn:net.vitic/karaf-websocket/1.0.0/xml/features -->
+
+    <repository>mvn:org.apache.cxf.karaf/apache-cxf/2.7.6/xml/features</repository>
+
+    <feature name="aries-spifly">
+        <bundle dependency="true" start-level="30">mvn:org.apache.aries.spifly/org.apache.aries.spifly.dynamic.bundle/1.0.1</bundle>
+    </feature>
+
+    <feature name="pax-jetty" description="Provide Jetty engine support" version="9.2.2.v20140723">
+        <feature>aries-spifly</feature>
+        <bundle dependency="true" start-level="30">mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.activation-api-1.1/1.9.0</bundle>
+        <bundle dependency="false" start-level="30">mvn:javax.servlet/javax.servlet-api/3.1.0</bundle>
+        <bundle dependency="false" start-level="30">mvn:javax.servlet.jsp/javax.servlet.jsp-api/2.3.1</bundle>
+        <bundle dependency="false" start-level="30">mvn:javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api/1.2.1</bundle>
+        <bundle dependency="true" start-level="30">mvn:javax.mail/mail/1.4.4</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1</bundle>
+        <bundle dependency="true" start-level="30">mvn:javax.annotation/javax.annotation-api/1.2</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-jaspic_1.0_spec/1.1</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.ow2.asm/asm-all/5.0.2</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-annotations/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-continuation/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-http/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-io/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-jaspi/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-jmx/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-jndi/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-plus/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-rewrite/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-security/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-server/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-servlet/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-servlets/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-util/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-util-ajax/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-webapp/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-jaas/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty/jetty-xml/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty.websocket/websocket-server/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty.websocket/websocket-servlet/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty.websocket/websocket-common/9.2.2.v20140723</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty.websocket/websocket-api/9.2.2.v20140723</bundle>
+    </feature>
+
+    <feature name="pax-http" version="4.1.0-SNAPSHOT" description="Implementation of the OSGI HTTP Service">
+        <details>Allows to publish servlets using pax web and jetty</details>
+        <configfile finalname="/etc/jetty.xml">mvn:org.ops4j.pax.web/pax-web-features/4.1.0-SNAPSHOT/xml/jettyconfig</configfile>
+        <config name="org.ops4j.pax.web">
+            org.osgi.service.http.port=8181
+            javax.servlet.context.tempdir=${karaf.data}/pax-web-jsp
+            org.ops4j.pax.web.config.file=${karaf.base}/etc/jetty.xml
+        </config>
+        <feature version="[7.0,10.0)">pax-jetty</feature>
+
+        <bundle dependency="true" start-level="20">mvn:org.ow2.asm/asm-all/5.0.2</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.apache.xbean/xbean-bundleutils/3.18</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.apache.xbean/xbean-reflect/3.18</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.apache.xbean/xbean-finder/3.18</bundle>
+
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-api/4.1.0-SNAPSHOT</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-spi/4.1.0-SNAPSHOT</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-runtime/4.1.0-SNAPSHOT</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-jetty/4.1.0-SNAPSHOT</bundle>
+    </feature>
+
+    <feature name="pax-http-whiteboard" description="Provide HTTP Whiteboard pattern support" version="4.1.0-SNAPSHOT">
+        <feature version="[4.1,4.2)">pax-http</feature>
+        <bundle dependency="true" start-level="30">wrap:mvn:org.eclipse.jdt.core.compiler/ecj/4.2.2</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-jsp/4.1.0-SNAPSHOT</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-extender-whiteboard/4.1.0-SNAPSHOT</bundle>
+    </feature>
+
+    <feature name="pax-war" description="Provide support of a full WebContainer" version="4.1.0-SNAPSHOT">
+        <config name="org.ops4j.pax.url.war">
+            org.ops4j.pax.url.war.importPaxLoggingPackages=true
+        </config>
+        <feature version="[4.1,4.2)">pax-http-whiteboard</feature>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-jsp/4.1.0-SNAPSHOT</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-extender-war/4.1.0-SNAPSHOT</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-extender-whiteboard/4.1.0-SNAPSHOT</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-deployer/4.1.0-SNAPSHOT</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.url/pax-url-war/2.1.0/jar/uber</bundle>
+    </feature>
+
+    <feature name="hazelcast" version="3.2.3">
+        <bundle>mvn:com.hazelcast/hazelcast/3.2.3</bundle>
+        <bundle>mvn:com.hazelcast/hazelcast-client/3.2.3</bundle>
+    </feature>
+
+    <feature name="karaf-websocket" version="1.0.0">
+        <feature version="4.1.0-SNAPSHOT">pax-war</feature>
+        <feature version="3.2.3">hazelcast</feature>
+        <bundle>mvn:com.vektortel.vmp/vmp-test/1.0.0</bundle>
+    </feature>
+
+</features>

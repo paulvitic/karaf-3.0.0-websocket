@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1412364010940
+Build-Jdk: 1.6.0_65
+Built-By: paul
+Bundle-Description: An evolution of VTPS
+Bundle-ManifestVersion: 2
+Bundle-Name: vmp-test
+Bundle-SymbolicName: com.vektortel.vmp.test
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin
+Export-Service: java.util.EventListener,javax.servlet.Filter;urlPatterns
+ ="/filtered/*",javax.servlet.Servlet;alias="/websocket",javax.servlet.S
+ ervlet;alias="/forbidden";httpContext.id=forbidden,javax.servlet.Servle
+ t;alias="/root",javax.servlet.Servlet;alias="/filtered",javax.servlet.S
+ ervlet;alias="/exception",javax.servlet.Servlet;alias="/whiteboard",org
+ .ops4j.pax.web.extender.whiteboard.ErrorPageMapping,org.ops4j.pax.web.e
+ xtender.whiteboard.JspMapping,org.ops4j.pax.web.extender.whiteboard.Res
+ ourceMapping,org.ops4j.pax.web.extender.whiteboard.WelcomeFileMapping,o
+ rg.osgi.service.http.HttpContext;httpContext.id=forbidden
+Import-Package: com.hazelcast.config;version="3.2.3",com.hazelcast.core;
+ version="3.2.3",javax.servlet;version="2.5",javax.servlet.annotation;ve
+ rsion="[3.1,4)",javax.servlet.http;version="[3.1,4)",org.eclipse.jetty.
+ websocket.api;version="[9.1,10)",org.eclipse.jetty.websocket.api.annota
+ tions;version="[9.1,10)",org.eclipse.jetty.websocket.servlet;version="[
+ 9.1,10)",org.ops4j.pax.web.extender.whiteboard;version="[4.1,5)",org.op
+ s4j.pax.web.extender.whiteboard.runtime;version="[4.1,5)",org.osgi.fram
+ ework;version="[1.5,2)",org.osgi.service.blueprint;version="[1.0.0,2.0.
+ 0)",org.osgi.service.http;version="[1.2,2)",org.slf4j;version="[1.6,2)"
+Tool: Bnd-1.50.0
